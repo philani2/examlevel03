@@ -5,34 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/31 10:48:31 by bgumede           #+#    #+#             */
-/*   Updated: 2018/07/31 11:02:55 by bgumede          ###   ########.fr       */
+/*   Created: 2018/07/31 11:05:54 by bgumede           #+#    #+#             */
+/*   Updated: 2018/07/31 11:18:21 by bgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
 
-int		*ft_rrange(int start, int end)
+#include <stdlib.h>
+#include <stdio.h>
+
+int		*ft_range(int start, int end)
 {
-	int 	i;
-	int		*rrange;
+	int		i;
+	int		*range;
 
 	i = 0;
 	if (start > end)
-		rrange = (int *)malloc(sizeof(int) * (start - end + 1));
+		range = (int *)malloc(sizeof(int) * (start - end));
 	else
-		rrange = (int *)malloc(sizeof(int) * (end - start + 1));
+		range = (int *)malloc(sizeof(int) * (end - start + 1));
 	while (start != end)
 	{
-		rrange[i++] = end;
-		end -= ((start > end) ? -1 : 1);
+		range[i++] = start;
+		start += ((start > end) ? -1 : 1);
 	}
-	rrange[i] = end;
-	return (rrange);
+	range[i] = start;
+	return (range);
 }
 
 int		main()
 {
-	printf("%d\n", *ft_rrange(1, 3));
+	printf("%d\n", *ft_range(1, 3));
 	return (0);
 }
